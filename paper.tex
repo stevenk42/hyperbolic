@@ -1,0 +1,579 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{array}
+
+
+\geometry{margin=1in}
+\title{A Developmental Framework for Pre-Symbolic Concept Learning via Hyperbolic Geometry}
+\author{
+  Steven Klemmer \\
+  \small Independent Researcher \\
+  \small \texttt{stevenklemmer (at) icloud.com} \\
+  \small \url{https://github.com/stevenk42}
+}
+\date{Version 2.3 \\ \today}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    captionpos=b
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper proposes a computational framework for modeling pre-symbolic concept formation in artificial agents using hyperbolic geometry. Inspired by speculative models of infant cognitive development, it hypothesizes that conceptual structure can emerge from internally generated structured noise — analogous to biological phosphenes or cortical spontaneous activity — self-organizing into stable geometric tilings within the Poincaré disk.
+
+The model leverages gyrovector operations for numerical stability, Möbius transformations for hierarchical navigation, and curvature-based metrics for structural health monitoring. A staged developmental pipeline — from noise-driven self-organization, through passive social observation, to autonomous exploration — mirrors hypothetical human cognitive growth.
+
+Key contributions include:  
+- A label-free mechanism for bootstrapping conceptual structure from internal dynamics  
+- Geometric formalization of proto-concepts as reaction-diffusion-seeded hyperbolic tilings  
+- Developmental safeguards based on curvature volatility and transformation collapse  
+- Operationalization of curiosity, boredom, and playfulness as measurable geometric quantities
+
+This framework explores artificial ontogeny where representation emerges from substrate vibration — not external programming — offering a path toward more robust, interpretable, and developmentally plausible AI.
+\end{abstract}
+
+\noindent
+\textbf{Keywords:} hyperbolic geometry, developmental AI, pre-symbolic learning, unsupervised concept formation, gyrovector spaces, Poincaré disk, reaction-diffusion systems, artificial ontogeny, self-organizing representations, geometric deep learning
+
+\section{Introduction}
+
+This work hypothesizes that human infants develop some form of conceptual understanding before acquiring language or receiving labeled datasets, though this remains an open question in developmental cognitive science. While neuroimaging studies show that spontaneous neural activity, including retinal waves and cortical noise, drives early cortical map formation, \textbf{the relationship between these geometric patterns and conceptual representation is speculative}.
+
+The framework explores the computational implications of this hypothesis by modeling what pre-symbolic concept formation might look like if it emerges from self-organizing geometric patterns rather than supervised learning. \textbf{This is a theoretical exploration, not a claim about established developmental mechanisms}.
+
+The motivation comes from several suggestive but inconclusive observations:
+\begin{itemize}
+    \item Infants show preferential looking patterns that suggest categorical perception before language acquisition
+    \item Spontaneous retinal waves occur before meaningful visual input and correlate with V1 organization
+    \item Early cortical maps exhibit hierarchical structure that resembles conceptual taxonomies
+\end{itemize}
+
+\textbf{However, whether these neural patterns constitute "concepts" in any meaningful sense remains highly debated}. The contribution is not to resolve this debate, but to provide a computational framework for exploring what internally-driven concept formation might look like if it occurs.
+
+The framework proposes that such hypothetical representations could be modeled as self-organizing tilings in hyperbolic space, where:
+\begin{itemize}
+    \item Hierarchical structure emerges naturally due to exponential space expansion
+    \item Local geometry supports efficient inference and generalization  
+    \item Curvature provides measurable proxies for representational coherence
+    \item Internal fluctuations seed stable geometric patterns
+\end{itemize}
+
+\textbf{This framework should be understood as a computational thought experiment}: if pre-symbolic concepts do emerge from internal dynamics rather than external supervision, what geometric principles might govern that process? Unlike predictive coding (which minimizes surprise) or language models (which memorize correlations), this framework explores whether minimizing geometric distortion during self-organization could preserve structural integrity as noise crystallizes into stable representations.
+
+\textbf{The biological plausibility claims are speculative and require empirical validation}. The primary contribution is the mathematical framework itself, which may prove useful regardless of whether infant cognition actually follows these principles.
+
+\section{Geometric Substrate: The Poincaré Disk Model}
+
+The framework models conceptual space as the unit disk $\mathbb{D} = \{z \in \mathbb{C} : |z| < 1\}$ under the Poincaré metric:
+
+$$ds^2 = \frac{4|dz|^2}{(1-|z|^2)^2}$$
+
+where:
+\begin{itemize}
+    \item Boundary ($|z| \to 1$) represents distant or abstract concepts
+    \item Radial distance correlates with conceptual specificity
+    \item Möbius transformations preserve hyperbolic distance and enable isometric navigation
+\end{itemize}
+
+\subsection{Hyperbolic Isometries}
+
+Concept transitions are modeled via Möbius maps:
+$$T(z) = \frac{az + b}{cz + d}, \quad ad - bc \neq 0$$
+
+\begin{itemize}
+    \item Fixed points on the boundary act as semantic anchors
+    \item Composition of maps enables hierarchical linking
+\end{itemize}
+
+\subsection{Radial Arm Encoding}
+
+The framework proposes partitioning the disk into $N$ radial sectors, hypothetically corresponding to proto-conceptual modalities:
+\begin{itemize}
+    \item Arm 1: Visual edges
+    \item Arm 2: Temporal sequences  
+    \item Arm 3: Spatial relationships
+\end{itemize}
+
+Periodic tilings arise from repeated Möbius transformations, seeded by internal noise patterns.
+
+\section{Gyrovector Mathematics for Stable Computation}
+
+Naive complex arithmetic in the Poincaré disk suffers from numerical instability near the boundary. The framework adopts gyrovector algebra (Ungar, 2008) for robust operations.
+
+\subsection{Core Operations}
+
+\textbf{Gyroaddition (Möbius Addition):}
+$$u \oplus v = \frac{u + v}{1 + \bar{u}v}$$
+
+\textbf{Gyroscalar Multiplication:}
+$$r \otimes v = \tanh(r \cdot \tanh^{-1}|v|) \cdot \frac{v}{|v|}$$
+
+\textbf{Gyration:}
+$$\text{gyr}[u,v]w = \ominus(u \oplus v) \oplus (u \oplus (v \oplus w))$$
+
+These operations ensure numerical stability and associativity up to gyration, critical for deep transformations.
+
+\subsection{Implementation Benefits}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of Arithmetic Methods}
+\begin{tabular}{lcc}
+\toprule
+Metric & Naive Arithmetic & Gyrovector \\
+\midrule
+Stability near boundary & Poor & High \\
+Computational complexity & O(n²) & O(n) \\
+Generalization to $\mathbb{H}^n$ & Limited & Natural \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Phosphene-Inspired Sensory Primitives}
+
+Rather than assuming external sensory input, the framework models internally generated structured noise that may be analogous to spontaneous retinal activity in infants, though this connection remains speculative. These "cortical ticks" are formalized as:
+
+$$\phi(t,r,\theta) = \xi(t) \cdot \sin(kr + \omega t + \phi_0) \cdot \mathcal{N}(\theta; \mu, \sigma)$$
+
+where:
+\begin{itemize}
+    \item $\xi(t)$: Temporal envelope sampled from autoregressive noise process (simulating biological stochasticity)
+    \item $k$: Spatial frequency drawn from distribution matching retinal wave granularity
+    \item $\omega$: Flicker rate low-pass filtered to match infant thalamocortical rhythms (~0.1–2 Hz)
+    \item $\mathcal{N}(\theta)$: Angular modulation simulating weak rotational biases
+\end{itemize}
+
+\subsection{Tiling Generation from Internal Noise}
+
+The system converts internally generated noise into stable hyperbolic tilings through the following process:
+
+\begin{enumerate}
+    \item \textbf{Generate raw "cortical tick"} — autoregressive spatial-temporal noise with no semantic content
+    \item \textbf{Inject into reaction-diffusion system} — let structure emerge through activator-inhibitor dynamics
+    \item \textbf{Threshold active regions} — only areas above noise floor become proto-concepts  
+    \item \textbf{Embed into Poincaré disk} — radial position indicates abstraction level
+\end{enumerate}
+
+This process explores how persistent co-fluctuations in activation manifolds might become interpreted as "concepts," analogous to the speculative hypothesis that infants detect correlated retinal flickers and develop edge representations, though the mechanisms remain unclear.
+
+\section{Developmental AI Architecture}
+
+The framework defines a three-phase training pipeline inspired by hypothetical models of human cognitive development:
+
+\begin{table}[H]
+\centering
+\caption{Developmental Phases}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{
+    >{\raggedright\arraybackslash}p{4.2cm}
+    >{\raggedright\arraybackslash}p{3.6cm}
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\centering\arraybackslash}p{3.0cm}
+}
+\toprule
+\textbf{Phase} & \textbf{Duration} & \textbf{Key Mechanism} & \textbf{Metric} \\
+\midrule
+
+\textbf{Cortical Organization} (0–6 mo)
+& Internal noise → patterns → tiling
+& Self-organization
+& \mbox{N/A} \\
+
+\addlinespace
+
+\textbf{Social Observation} (6 mo – 8 yr)
+& Social exposure, contingent responses
+& Passive learning
+& \mbox{$H_{\text{eng}} = $} \par \mbox{$-\sum p \log p$} \\
+
+\addlinespace
+
+\textbf{Autonomous Exploration} (>8 yr)
+& Unsupervised exploration
+& Open-ended learning
+& \mbox{$\left\|\frac{dT}{dt}\right\|$} \par {\footnotesize (flux)} \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Phase 1: Cortical Organization}
+\begin{itemize}
+    \item Agent receives only internal noise patterns
+    \item Goal: Stabilize coherent geometric concept map without external input
+    \item Success measured by tiling coherence and radial hierarchy emergence
+\end{itemize}
+
+\subsection{Phase 2: Social Observation}  
+\begin{itemize}
+    \item Agent observes curated social interactions (text, audio, video)
+    \item No direct intervention; learning is passive
+    \item Engagement measured by action entropy, not absorption
+\end{itemize}
+
+\subsection{Phase 3: Autonomous Exploration}
+\begin{itemize}
+    \item Supervision removed (developmental transition to independence)
+    \item Agent explores filtered internet-like environment
+    \item Monitored by geometric transformation rates
+\end{itemize}
+
+\section{Core Modules with Geometric Regularization}
+
+\subsection{Curiosity as Geodesic Instability}
+
+Reward based on sensitivity to perturbation:
+$$\Delta U = \Delta H \cdot \left(1 + \kappa \cdot \left\| \frac{d(\log|J|)}{dt} \right\|_2 + \beta \cdot \| \nabla_{\dot{\gamma}} \dot{\gamma} \| \right)$$
+
+This encourages exploration along paths where small changes cause large conceptual shifts, promoting learning at the "edge of chaos."
+
+\subsection{Ricci Flow Regularization}
+
+Optional loss term to smooth conceptual manifold:
+$$\mathcal{L}_{\text{Ricci}} = \lambda_R \cdot \int_{\mathbb{D}} \| \text{Ric}_g - c \cdot g \|^2 \, dV_g$$
+
+This drives local curvature toward uniformity and prevents pathological folding, implemented via graph Laplacian spectrum regularization.
+
+\subsection{Self-Modeling with Reconstruction}
+
+Reconstruction loss with hyperbolic regularization:
+$$\mathcal{L} = \|C - D(E(C))\|^2 + \lambda \cdot d_{\text{hyp}}(E(C), \text{closest\_tile}(E(C)))$$
+
+During developmental pauses, the agent must:
+\begin{enumerate}
+    \item Project current hyperbolic concepts into $\mathbb{R}^2$ via Klein projection
+    \item Reconstruct 90\% of tile positions and relationships  
+    \item Re-embed into $\mathbb{H}^2$ only after ensuring geometric consistency
+\end{enumerate}
+
+\subsection{Social Dynamics via Isometry-Invariant Metrics}
+
+Mutual information computed in shared tangent space:
+$$I(s_1; s_2) = \text{MI}(\log z_1(s_1), \log z_2(s_2))$$
+
+This ensures distance invariance under Möbius transforms and avoids trivial clustering in Euclidean projections.
+
+\subsection{Geometric Proxies for Cognitive States}
+
+The framework operationalizes psychological concepts as measurable geometric quantities:
+\begin{itemize}
+    \item \textbf{Boredom}: Low change in tiling structure ($M_{\text{bore}} = \sum |z|^2$)
+    \item \textbf{Anxiety}: High curvature volatility ($|\frac{d\kappa}{dt}| > \tau$)  
+    \item \textbf{Playfulness}: High rate of geometric transformation
+\end{itemize}
+
+These are strictly mathematical constructs, not claims of inner experience.
+
+\section{Structural Safeguards \& Health Monitoring}
+
+\subsection{Developmental Pause Protocol}
+
+Training halts if \textbf{both} conditions occur:
+\begin{enumerate}
+    \item $\log \det(J) < \epsilon$ (Jacobian collapse — loss of transformation diversity)
+    \item $\left| \frac{d\kappa}{dt} \right| > \tau$ (curvature volatility — conceptual instability)
+\end{enumerate}
+
+\textbf{Recovery procedure:}
+\begin{enumerate}
+    \item Log all Möbius transforms (audit trail)
+    \item Force $\mathbb{R}^2$ reconstruction (geometric flattening)  
+    \item Resume only after tiling coherence restored
+\end{enumerate}
+
+\subsection{Structural Health Metrics}
+
+\begin{table}[H]
+\centering
+\caption{Health Monitoring Mechanisms}
+\begin{tabular}{lp{10cm}}
+\toprule
+Mechanism & Purpose \\
+\midrule
+Log-Det(J) Monitoring & Detects collapse of transformation diversity \\
+Curvature Volatility & Identifies representational instability \\
+Hyperbolic Clustering & Groups agents with similar concept geometries \\
+Audit Trail & Logs all transformations for interpretability \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These are representational safeguards for geometric integrity, not moral reasoning systems.
+
+\section{Implementation \& Challenges}
+
+\subsection{Key Challenges \& Solutions}
+
+\begin{table}[H]
+\centering
+\caption{Challenges and Proposed Solutions}
+\begin{tabular}{lp{10cm}}
+\toprule
+Challenge & Solution \\
+\midrule
+Numerical instability & Gyrovector operations + adaptive precision \\
+Scaling to high dimensions & Multi-resolution tilings, hierarchical attention \\
+Training dynamics & Riemannian optimization with curvature-aware learning rates \\
+Validation & Curvature-aware metrics (tiling coherence, generalization gap) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Code Example: Stable Distance Computation}
+
+\begin{lstlisting}[caption={Stable Hyperbolic Distance},label=lst:distance]
+def stable_hyperbolic_distance(u, v, eps=1e-8):
+    """Numerically stable hyperbolic distance with Klein model fallback"""
+    if abs(u) > 1-eps or abs(v) > 1-eps:
+        # Use Klein model for boundary cases
+        u_k = 2*u / (1 + abs(u)**2)  
+        v_k = 2*v / (1 + abs(v)**2)
+        return np.arccosh(1 + 2*abs(u_k - v_k)**2 / 
+                         ((1-abs(u_k)**2)*(1-abs(v_k)**2)))
+    else:
+        # Standard Poincare distance
+        diff = (u - v) / (1 + np.conj(u)*v)
+        return 2 * np.arctanh(abs(diff))
+\end{lstlisting}
+
+\section{Comparative Analysis}
+
+\begin{table}[H]
+\centering
+\caption{Comparison with Other Approaches}
+\begin{tabular}{lcccc}
+\toprule
+Approach & Hierarchy & Generalization & Structural Health & Dev. Alignment \\
+\midrule
+LLMs & Flat & Poor & None & Low \\
+RLHF & Manual & Imitative & Behavioral & Medium \\
+Constitutional AI & Rule-based & Constrained & Textual & Medium \\
+\textbf{This Framework} & \textbf{Geometric} & \textbf{High} & \textbf{Measurable} & \textbf{High} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Experimental Roadmap}
+
+\subsection{Phase 1: Geometric Kernel Validation}
+\begin{itemize}
+    \item Benchmark gyrovector operations vs. naive methods
+    \item Validate tiling stability under phosphene inputs
+    \item \textbf{Blind Bootstrapping Test}: Train only on internal noise, measure emergence of modality structure
+\end{itemize}
+
+\subsection{Phase 2: Pre-Symbolic Learning Simulation}  
+\begin{itemize}
+    \item Measure concept clustering without labels
+    \item Track $M_{\text{legacy}} = \mathbb{E}[\log \det(J)]$ over time
+    \item \textbf{CPU Tick Challenge}: Replace phosphenes with hardware sensor noise
+\end{itemize}
+
+\subsection{Phase 3: Generalization \& Robustness}
+\begin{itemize}
+    \item Test on ambiguous or novel domains
+    \item Compare to Euclidean baselines
+    \item \textbf{Adversarial Noise Injection}: Perturb with non-Turing noise patterns
+\end{itemize}
+
+\subsection{Phase 4: Multi-Agent Social Dynamics}
+\begin{itemize}
+    \item Deploy agent clusters  
+    \item Study alignment via hyperbolic clustering
+    \item \textbf{Curvature Annealing Stress Test}: Force mid-training transitions between $\mathbb{H}^2$ and $\mathbb{R}^n$
+\end{itemize}
+
+\section{Limitations \& Ethical Considerations}
+
+\begin{itemize}
+    \item \textbf{No claim of consciousness or sapience} — only geometric structure preservation
+    \item \textbf{Not a moral reasoning system} — structural alignment through measurable dynamics
+    \item \textbf{Metaphorical language} (emotion, development) is pedagogical, not literal
+    \item \textbf{Risk of geometry overfitting} — mitigated by curvature annealing and $\mathbb{R}^2$ fallback protocols
+\end{itemize}
+
+All psychological terms are operationalized as differential geometric quantities. This work encourages neuroscience collaboration to test whether infant brain maps might align with hyperbolic models, recognizing that current evidence for pre-symbolic geometric concept formation is limited.
+
+\section{Conclusion}
+
+This paper presents a developmentally inspired AI framework that uses hyperbolic geometry to model pre-symbolic concept formation through internally generated structured noise. By grounding representation in curved space and hypothetical biological development patterns, the framework enables natural hierarchies, efficient inference, and measurable structural health.
+
+This approach explores artificial ontogeny where an agent might learn not through instruction but through resonance — beginning with substrate vibration rather than curated data, developing structure through geometric preservation principles rather than symbolic programming.
+
+While not claiming artificial consciousness, this framework offers a potentially more cognitively plausible, robust, and interpretable architecture for building generalizable AI systems that develop from within.
+
+Future work includes neuroscience validation, scaling to higher dimensions, integration with predictive coding models, and exploration of multi-agent hyperbolic social dynamics.
+
+\section*{Conflict of Interest}
+The author declares no conflicts of interest. This work was conducted independently without institutional affiliation or funding.
+
+\section*{Funding}
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\appendix
+
+\section{Mathematical Derivations}
+
+\subsection{Gyrovector Operations Derivation}
+
+The gyrovector approach to hyperbolic geometry provides a group-like structure that respects the non-associative nature of hyperbolic operations. For points $ u, v \in \mathbb{D} $ (the Poincaré disk):
+
+\textbf{Gyroaddition} $ \oplus $ is defined as:
+$$
+u \oplus v = \frac{u + v}{1 + \bar{u}v}
+$$
+
+The \textbf{gyration operator} arises from the non-associativity and is defined as:
+$$
+\text{gyr}[u,v]w = \ominus(u \oplus v) \oplus (u \oplus (v \oplus w))
+$$
+
+Where $ \ominus v $ represents the gyro-inverse:
+$$
+\ominus v = -v
+$$
+
+For a scalar $ r \in \mathbb{R} $ and vector $ v \in \mathbb{D} $, \textbf{gyroscalar multiplication} is:
+$$
+r \otimes v = \tanh(r \cdot \tanh^{-1}|v|) \cdot \frac{v}{|v|}
+$$
+
+This ensures radial scaling remains bounded within the unit disk while preserving direction.
+
+\subsection{Gaussian Curvature in the Poincaré Disk}
+
+The Gaussian curvature $ K $ in the Poincaré disk model is constant and negative:
+$$
+K = -\frac{4}{(1-|z|^2)^2}
+$$
+
+The metric tensor components are:
+$$
+g_{ij} = \frac{4\delta_{ij}}{(1-|z|^2)^2}
+$$
+
+This exponential expansion with radius enables natural encoding of hierarchical relationships — dense near origin (concrete), sparse near boundary (abstract).
+
+\subsection{Tiling Density Preservation Proof}
+
+Let $ T(z) $ be a Möbius transformation preserving hyperbolic distance. The tile density function $ \rho(r) \propto (1 - r^2)^{-1} $ transforms under $ T $ as:
+$$
+\rho(T(z)) = \rho(z) \cdot |T'(z)|^{-2}
+$$
+
+Substituting the derivative of the general Möbius map $ T(z) = \frac{az + b}{cz + d} $, one finds that the conformal factor $ |T'(z)|^2 $ exactly cancels the radial scaling induced by $ T $, thereby preserving local tiling density under isometry.
+
+\section{Code Examples}
+
+\subsection{Phosphene Basis Implementation}
+
+\begin{lstlisting}[caption={Phosphene Basis Function}]
+def phosphene_basis(t, r, theta, k=2.0, omega=0.5, phi=0.0, harmonics=3):
+    """Generate phosphene-like visual primitives
+    
+    Args:
+        t: time parameter
+        r: radial distance (0 to 1)
+        theta: angular position
+        k: spatial frequency
+        omega: temporal frequency
+        phi: phase offset
+        harmonics: number of angular harmonics
+    
+    Returns:
+        Phosphene activation value
+    """
+    # Amplitude envelope (Gaussian pulse)
+    A_t = np.exp(-(t-5)**2/10)
+    
+    # Radial component
+    radial = np.sin(k*r + omega*t + phi)
+    
+    # Angular harmonics
+    angular = 0
+    for h in range(1, harmonics+1):
+        angular += (1/h) * np.sin(h*theta)
+    
+    return A_t * radial * angular
+\end{lstlisting}
+
+\textit{Note: This simulates internally generated spatiotemporal noise patterns, intended to seed proto-conceptual structure without semantic content.}
+
+\subsection{Efficient Hyperbolic Distance with Gyrovectors}
+
+\begin{lstlisting}[caption={Gyrovector Distance Function}]
+def gyro_distance(u, v, epsilon=1e-8):
+    """Compute hyperbolic distance using gyrovector approach
+    
+    Args:
+        u, v: Complex points in Poincare disk
+        epsilon: Numerical stability parameter
+    
+    Returns:
+        Hyperbolic distance between u and v
+    """
+    # Handle boundary cases
+    u_norm = np.abs(u)
+    v_norm = np.abs(v)
+    
+    if u_norm > 1-epsilon or v_norm > 1-epsilon:
+        # Use alternative formula near boundary
+        one_minus_u_sq = max(epsilon, 1 - u_norm**2)
+        one_minus_v_sq = max(epsilon, 1 - v_norm**2)
+        
+        numer = np.abs(u - v)**2
+        denom = one_minus_u_sq * one_minus_v_sq
+        
+        return np.arccosh(1 + 2*numer/denom)
+    
+    # Standard case using gyroaddition
+    gyro_diff = (u - v) / (1 + np.conj(u)*v)
+    return 2 * np.arctanh(np.abs(gyro_diff))
+\end{lstlisting}
+
+\textit{Note: Uses Klein-model fallback near boundary for numerical robustness. Essential for deep developmental trajectories where concepts drift toward abstraction.}
+
+\begin{thebibliography}{9}
+
+\bibitem{ungar2008}
+Ungar, A. A. (2008). \textit{Analytic Hyperbolic Geometry and Einstein's Special Relativity}.
+
+\bibitem{ganea2018}
+Ganea, O., Bécigneul, G., \& Hofmann, T. (2018). Hyperbolic Neural Networks. ICLR.
+
+\bibitem{wong1999}
+Wong, R. O. (1999). Retinal waves and visual system development. \textit{Annual Review of Neuroscience}.
+
+\bibitem{turing1952}
+Turing, A. M. (1952). The chemical basis of morphogenesis. \textit{Philosophical Transactions}.
+
+\bibitem{oregan2001}
+O'Regan, J. K., \& Noë, A. (2001). A sensorimotor account of vision and visual consciousness.
+
+\bibitem{schmidhuber2010}
+Schmidhuber, J. (2010). Formal theory of creativity, fun, and intrinsic motivation.
+
+\bibitem{bear1994}
+Bear, M. F., \& Malenka, R. C. (1994). Synaptic plasticity: LTP and LTD.
+
+\end{thebibliography}
+
+\end{document}
